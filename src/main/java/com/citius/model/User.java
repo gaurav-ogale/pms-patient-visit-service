@@ -1,4 +1,4 @@
-package com.citius.models;
+package com.citius.model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -15,10 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -39,7 +39,7 @@ public class User {
 	@NotNull(message = "Email Should Not be Null")@NotEmpty @NotBlank
 	private String userEmail;
 
-	private LocalDate userDOB;
+	private String userDOB;
 
 	@Size(min = 10,max = 10, message = "Contact No shoule be of 10 digit")
 	private String userContactNo;
@@ -49,31 +49,12 @@ public class User {
 	
 	private Boolean isActive = true;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-	@JsonIgnore
-	private Set<User_Roles> userRoles = new HashSet<User_Roles>();
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+//	@JsonIgnore
+//	private Set<User_Roles> userRoles = new HashSet<User_Roles>();
 
 	public User() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public User(Long userId, String username, @Size(min = 1, max = 3, message = "Invalid user title") String userTitle,
-			String userFirstName, String userLastName, @NotNull(message = "Email Should Not be Null") String userEmail,
-			LocalDate userDOB, @Size(max = 10, message = "Contact No shoule be of 10 digit") String userContactNo,
-			@NotNull(message = "password should not be null") String password, Boolean isActive,
-			Set<User_Roles> userRoles) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.userTitle = userTitle;
-		this.userFirstName = userFirstName;
-		this.userLastName = userLastName;
-		this.userEmail = userEmail;
-		this.userDOB = userDOB;
-		this.userContactNo = userContactNo;
-		this.password = password;
-		this.isActive = isActive;
-		this.userRoles = userRoles;
 	}
 
 	public Long getUserId() {
@@ -124,11 +105,11 @@ public class User {
 		this.userEmail = userEmail;
 	}
 
-	public LocalDate getUserDOB() {
+	public String getUserDOB() {
 		return userDOB;
 	}
 
-	public void setUserDOB(LocalDate userDOB) {
+	public void setUserDOB(String userDOB) {
 		this.userDOB = userDOB;
 	}
 
@@ -156,21 +137,21 @@ public class User {
 		this.password = password;
 	}
 
-
-	public Set<User_Roles> getUserRoles() {
-		return userRoles;
-	}
-
-	public void setUserRoles(Set<User_Roles> userRoles) {
-		this.userRoles = userRoles;
-	}
+//
+//	public Set<User_Roles> getUserRoles() {
+//		return userRoles;
+//	}
+//
+//	public void setUserRoles(Set<User_Roles> userRoles) {
+//		this.userRoles = userRoles;
+//	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", userTitle=" + userTitle + ", userFirstName="
 				+ userFirstName + ", userLastName=" + userLastName + ", userEmail=" + userEmail + ", userDOB=" + userDOB
 				+ ", userContactNo=" + userContactNo + ", password=" + password + ", isActive=" + isActive
-				+ ", userRoles=" + userRoles + "]";
+				+ ", userRoles="  + "]";
 	}
 
 }
