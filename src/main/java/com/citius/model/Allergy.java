@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity()
-@Table(name="allergies")
+@Table(name="patient_allergies")
 public class Allergy {
 	
 	@Id

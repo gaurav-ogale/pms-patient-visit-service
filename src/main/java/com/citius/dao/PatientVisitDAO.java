@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.citius.model.EmergencyContact;
 import com.citius.model.PatientDetails;
+import com.citius.model.PatientVisit;
 import com.citius.repository.EmergencyContactRepo;
 import com.citius.repository.Visitrepo;
 
@@ -18,9 +19,7 @@ public class PatientVisitDAO {
 	private EmergencyContactRepo eContactRepo;
 
 	public void save(PatientDetails patientDetails) {
-		// TODO Auto-generated method stub
-		
-		
+		// TODO Auto-generated method stu
 		
 		PatientDetails p = new PatientDetails();
 		p.setUserTitle(patientDetails.getUserTitle());
@@ -30,7 +29,7 @@ public class PatientVisitDAO {
 		p.setUserContactNo(patientDetails.getUserContactNo());
 		p.setUserDOB(patientDetails.getUserDOB());
 		p.setUserEmail(patientDetails.getUserEmail());
-		p.setAge(45);
+		p.setAge();
 		p.setGender(patientDetails.getGender());
 		p.setEthnicity(patientDetails.getEthnicity());
 		p.setLanguagesKnown(patientDetails.getLanguagesKnown());
@@ -52,13 +51,20 @@ public class PatientVisitDAO {
 			e.setAddress(patientDetails.getHomeAddress());
 		else
 			e.setAddress(patientDetails.getEmergencyContact().getAddress());
+				
+		p.setEmergencyContact(e);
 		
-//		eContactRepo.save(e);
-//		
-//		p.setEmergencyContact(e);
+		PatientVisit visit = new PatientVisit();
+	
+		visit.setHeight(patientDetails.getVisitDetails().getHeight());
+		visit.setWeight(patientDetails.getVisitDetails().getWeight());
+		visit.setBloodPressure(patientDetails.getVisitDetails().getBloodPressure());
+		visit.setBloodTemperature(patientDetails.getVisitDetails().getBloodTemperature());
+		visit.setRespirationRate(patientDetails.getVisitDetails().getRespirationRate());
 		
-		eContactRepo.save(e);
+		p.setVisitDetails(visit);
 		visitrepo.save(p);
+		
 		
 	}
 

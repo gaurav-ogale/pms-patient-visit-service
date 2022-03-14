@@ -1,22 +1,22 @@
 package com.citius.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.citius.dao.PatientVisitDAO;
+
 @Entity
+@DiscriminatorValue("Patient")
 public class PatientDetails extends User {
 	
-	
-//	private String title;
-//	
-//	private String firstName;
-//	
-//	private String lastName;
-//	
-//	private LocalDate dateOfBirth;
 	
 	private Integer age;
 	
@@ -27,33 +27,34 @@ public class PatientDetails extends User {
 	private String ethnicity;
 	
 	private String languagesKnown;
-	
-//	private String email;
-	
+		
 	private String homeAddress;
-	
-//	private Long phoneNumber;
-	
-	public String getHomeAddress() {
-		return homeAddress;
-	}
 
-	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name= "emergId")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name= "emerg_id")
 	private EmergencyContact emergencyContact;
 	
 	private Boolean hasAllergy;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	//@JoinColumn
+	private List<Allergy> allergies;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "visit_id")
+	private PatientVisit visitDetails;
 
 	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setAge() {
+		
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date;
+		date  = LocalDate.parse(this.getUserDOB(), format);
+		LocalDate now =  LocalDate.now();
+		this.age= now.getYear() - date.getYear();
 	}
 
 	public String getGender() {
@@ -92,8 +93,7 @@ public class PatientDetails extends User {
 		return emergencyContact;
 	}
 	
-	@JoinTable
-	@OneToOne
+	
 	public void setEmergencyContact(EmergencyContact emergencyContact) {
 		this.emergencyContact = emergencyContact;
 	}
@@ -105,6 +105,38 @@ public class PatientDetails extends User {
 	public void setHasAllergy(Boolean hasAllergy) {
 		this.hasAllergy = hasAllergy;
 	}
+	
+	public String getHomeAddress() {
+		return homeAddress;
+	}
+
+	public void setHomeAddress(String homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+
+	public List<Allergy> getAllergies() {
+		return allergies;
+	}
+
+	public void setAllergies(List<Allergy> allergies) {
+		this.allergies = allergies;
+	}
+
+	public PatientVisit getVisitDetails() {
+		return visitDetails;
+	}
+
+	public void setVisitDetails(PatientVisit visitDetails) {
+		this.visitDetails = visitDetails;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	
+	
+	
+	
 
 	
 
