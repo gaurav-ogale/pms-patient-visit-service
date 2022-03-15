@@ -15,13 +15,15 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 
 	@Override
 	public void save(PatientDetails patientDetails) {
-		// TODO Auto-generated method stub
-		
-		EmergencyContact e  = new EmergencyContact();
-//		e.setFirstName(patientDetails.getEmergencyContact().getFirstName());
-//		e.se
 		
 		patVisitDAO.save(patientDetails);
+		
+	}
+
+	@Override
+	public void updatePatientInfo(String username, String title) {
+		// TODO Auto-generated method stub
+		patVisitDAO.updatePatientInfo(username, title);
 		
 	}
 

@@ -66,6 +66,13 @@ public class PatientVisitDAO {
 		visitrepo.save(p);
 		
 		
+		
+	}
+
+	public void updatePatientInfo(String username, String title) {
+		// TODO Auto-generated method stub
+		System.out.println(title+ username);
+		visitrepo.updateUser(title,username);
 	}
 
 }

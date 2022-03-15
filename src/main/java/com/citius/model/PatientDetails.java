@@ -2,6 +2,7 @@ package com.citius.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.citius.dao.PatientVisitDAO;
 
 @Entity
 @DiscriminatorValue("Patient")
@@ -36,9 +35,8 @@ public class PatientDetails extends User {
 	
 	private Boolean hasAllergy;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	//@JoinColumn
-	private List<Allergy> allergies;
+//	@OneToMany(cascade = CascadeType.ALL)
+//	private ArrayList<Allergy> allergies;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "visit_id")
@@ -114,13 +112,13 @@ public class PatientDetails extends User {
 		this.homeAddress = homeAddress;
 	}
 
-	public List<Allergy> getAllergies() {
-		return allergies;
-	}
-
-	public void setAllergies(List<Allergy> allergies) {
-		this.allergies = allergies;
-	}
+//	public List<Allergy> getAllergies() {
+//		return allergies;
+//	}
+//
+//	public void setAllergies(ArrayList<Allergy> allergies) {
+//		this.allergies = allergies;
+//	}
 
 	public PatientVisit getVisitDetails() {
 		return visitDetails;

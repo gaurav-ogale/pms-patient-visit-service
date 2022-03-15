@@ -6,4 +6,6 @@ public interface PatientVisitService {
 
 	void save(PatientDetails patientDetails);
 
+	void updatePatientInfo(String username, String title);
+
 }
