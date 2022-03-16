@@ -63,6 +63,9 @@ public class PatientVisitDAO {
 		visit.setRespirationRate(patientDetails.getVisitDetails().getRespirationRate());
 		
 		p.setVisitDetails(visit);
+		p.setProcedureDetails(patientDetails.getProcedureDetails());
+		p.setAllergies(patientDetails.getAllergies());
+		p.setDrugDetails(patientDetails.getDrugDetails());
 		visitrepo.save(p);
 		
 		

@@ -2,7 +2,6 @@ package com.citius.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,17 +29,24 @@ public class PatientDetails extends User {
 	private String homeAddress;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name= "emerg_id")
+	@JoinColumn(name = "emerg_id")
 	private EmergencyContact emergencyContact;
 	
 	private Boolean hasAllergy;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	private ArrayList<Allergy> allergies;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Allergy> allergies;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "visit_id")
 	private PatientVisit visitDetails;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Procedures> procedureDetails;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Drug> drugDetails;
+	
 
 	public Integer getAge() {
 		return age;
@@ -112,13 +118,13 @@ public class PatientDetails extends User {
 		this.homeAddress = homeAddress;
 	}
 
-//	public List<Allergy> getAllergies() {
-//		return allergies;
-//	}
-//
-//	public void setAllergies(ArrayList<Allergy> allergies) {
-//		this.allergies = allergies;
-//	}
+	public List<Allergy> getAllergies() {
+		return allergies;
+	}
+
+	public void setAllergies(List<Allergy> allergies) {
+		this.allergies = allergies;
+	}
 
 	public PatientVisit getVisitDetails() {
 		return visitDetails;
@@ -130,6 +136,22 @@ public class PatientDetails extends User {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public List<Procedures> getProcedureDetails() {
+		return procedureDetails;
+	}
+
+	public void setProcedureDetails(List<Procedures> procedureDetails) {
+		this.procedureDetails = procedureDetails;
+	}
+
+	public List<Drug> getDrugDetails() {
+		return drugDetails;
+	}
+
+	public void setDrugDetails(List<Drug> drugDetails) {
+		this.drugDetails = drugDetails;
 	}
 	
 	
