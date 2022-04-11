@@ -93,6 +93,14 @@ public class EmergencyContact {
 	public void setAccessToPatientPortal(Boolean accessToPatientPortal) {
 		this.accessToPatientPortal = accessToPatientPortal;
 	}
+
+	public Integer getEmergencyId() {
+		return emergencyId;
+	}
+
+	public void setEmergencyId(Integer emergencyId) {
+		this.emergencyId = emergencyId;
+	}
 	
 	
 	

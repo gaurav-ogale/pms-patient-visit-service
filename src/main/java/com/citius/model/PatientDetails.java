@@ -40,12 +40,12 @@ public class PatientDetails extends User {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "visit_id")
 	private PatientVisit visitDetails;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Procedures> procedureDetails;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Drug> drugDetails;
+//	
+//	@OneToMany(cascade = CascadeType.ALL)
+//	private List<Procedures> procedureDetails;
+//	
+//	@OneToMany(cascade = CascadeType.ALL)
+//	private List<Drug> drugDetails;
 	
 
 	public Integer getAge() {
@@ -138,21 +138,21 @@ public class PatientDetails extends User {
 		this.age = age;
 	}
 
-	public List<Procedures> getProcedureDetails() {
-		return procedureDetails;
-	}
-
-	public void setProcedureDetails(List<Procedures> procedureDetails) {
-		this.procedureDetails = procedureDetails;
-	}
-
-	public List<Drug> getDrugDetails() {
-		return drugDetails;
-	}
-
-	public void setDrugDetails(List<Drug> drugDetails) {
-		this.drugDetails = drugDetails;
-	}
+//	public List<Procedures> getProcedureDetails() {
+//		return procedureDetails;
+//	}
+//
+//	public void setProcedureDetails(List<Procedures> procedureDetails) {
+//		this.procedureDetails = procedureDetails;
+//	}
+//
+//	public List<Drug> getDrugDetails() {
+//		return drugDetails;
+//	}
+//
+//	public void setDrugDetails(List<Drug> drugDetails) {
+//		this.drugDetails = drugDetails;
+//	}
 	
 	
 	

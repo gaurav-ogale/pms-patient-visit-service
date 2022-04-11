@@ -5,7 +5,10 @@ import com.citius.model.PatientDetails;
 public interface PatientVisitService {
 
 	void save(PatientDetails patientDetails);
+	
+	void updatePatientDetails(PatientDetails patient);
 
-	void updatePatientInfo(String username, String title);
+	void updateEmergencyContactDetails(PatientDetails patientDetails);
+
 
 }

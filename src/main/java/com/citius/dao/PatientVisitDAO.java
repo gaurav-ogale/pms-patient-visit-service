@@ -16,7 +16,7 @@ public class PatientVisitDAO {
 	private Visitrepo visitrepo;
 	
 	@Autowired
-	private EmergencyContactRepo eContactRepo;
+	private EmergencyContactRepo emRepo;
 
 	public void save(PatientDetails patientDetails) {
 		// TODO Auto-generated method stu
@@ -61,21 +61,33 @@ public class PatientVisitDAO {
 		visit.setBloodPressure(patientDetails.getVisitDetails().getBloodPressure());
 		visit.setBloodTemperature(patientDetails.getVisitDetails().getBloodTemperature());
 		visit.setRespirationRate(patientDetails.getVisitDetails().getRespirationRate());
-		
+//		
 		p.setVisitDetails(visit);
-		p.setProcedureDetails(patientDetails.getProcedureDetails());
-		p.setAllergies(patientDetails.getAllergies());
-		p.setDrugDetails(patientDetails.getDrugDetails());
+//		p.setProcedureDetails(patientDetails.getProcedureDetails());
+//		p.setAllergies(patientDetails.getAllergies());
+//		p.setDrugDetails(patientDetails.getDrugDetails());
 		visitrepo.save(p);
 		
 		
 		
 	}
+	
+	public void updatePatientDetails(PatientDetails patient) {
+		visitrepo.updatePatientDetails(patient.getUserTitle(), patient.getUserContactNo(), patient.getUserEmail(),
+			patient.getUserFirstName(), patient.getUserLastName(),patient.getUserDOB(), patient.getGender(),
+				patient.getRace(), patient.getLanguagesKnown(), patient.getHomeAddress(),
+			 patient.getUsername());
+	}
 
-	public void updatePatientInfo(String username, String title) {
+	public void updateEmergencyContactDetails(PatientDetails patientDetails) {
 		// TODO Auto-generated method stub
-		System.out.println(title+ username);
-		visitrepo.updateUser(title,username);
+		PatientDetails p = visitrepo.getByUsername(patientDetails.getUsername());
+		EmergencyContact e = patientDetails.getEmergencyContact();
+		Integer id = p.getEmergencyContact().getEmergencyId();
+		emRepo.updateEmergencyContactDetails(e.getFirstName(),e.getLastName() , e.getEmail(), 
+				e.getContact(), e.getRelationship(), e.getAddress(), e.getAccessToPatientPortal(), id);
+		
+		
 	}
 
 }
