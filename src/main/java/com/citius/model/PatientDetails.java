@@ -5,14 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-@DiscriminatorValue("Patient")
 public class PatientDetails extends User {
 	
 	
@@ -34,18 +32,12 @@ public class PatientDetails extends User {
 	
 	private Boolean hasAllergy;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Allergy> allergies;
+//	@OneToMany(cascade = CascadeType.ALL)
+//	private List<Allergy> allergies;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "visit_id")
-	private PatientVisit visitDetails;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Procedures> procedureDetails;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Drug> drugDetails;
+	private List<PatientVisit> visitDetails;
 	
 
 	public Integer getAge() {
@@ -118,46 +110,28 @@ public class PatientDetails extends User {
 		this.homeAddress = homeAddress;
 	}
 
-	public List<Allergy> getAllergies() {
-		return allergies;
-	}
+//	public List<Allergy> getAllergies() {
+//		return allergies;
+//	}
+//
+//	public void setAllergies(List<Allergy> allergies) {
+//		this.allergies = allergies;
+//	}
 
-	public void setAllergies(List<Allergy> allergies) {
-		this.allergies = allergies;
-	}
-
-	public PatientVisit getVisitDetails() {
-		return visitDetails;
-	}
-
-	public void setVisitDetails(PatientVisit visitDetails) {
-		this.visitDetails = visitDetails;
-	}
+	
 
 	public void setAge(Integer age) {
 		this.age = age;
 	}
 
-	public List<Procedures> getProcedureDetails() {
-		return procedureDetails;
+	public List<PatientVisit> getVisitDetails() {
+		return visitDetails;
 	}
 
-	public void setProcedureDetails(List<Procedures> procedureDetails) {
-		this.procedureDetails = procedureDetails;
-	}
-
-	public List<Drug> getDrugDetails() {
-		return drugDetails;
-	}
-
-	public void setDrugDetails(List<Drug> drugDetails) {
-		this.drugDetails = drugDetails;
+	public void setVisitDetails(List<PatientVisit> visitDetails) {
+		this.visitDetails = visitDetails;
 	}
 	
-	
-	
-	
-
 	
 
 }

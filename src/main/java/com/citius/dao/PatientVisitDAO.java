@@ -1,5 +1,8 @@
 package com.citius.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,16 +59,18 @@ public class PatientVisitDAO {
 		
 		PatientVisit visit = new PatientVisit();
 	
-		visit.setHeight(patientDetails.getVisitDetails().getHeight());
-		visit.setWeight(patientDetails.getVisitDetails().getWeight());
-		visit.setBloodPressure(patientDetails.getVisitDetails().getBloodPressure());
-		visit.setBloodTemperature(patientDetails.getVisitDetails().getBloodTemperature());
-		visit.setRespirationRate(patientDetails.getVisitDetails().getRespirationRate());
+//		visit.setHeight(new Integer(16));
+//		visit.setWeight(60);
+//		visit.setBloodPressure(patientDetails.getVisitDetails().getBloodPressure());
+//		visit.setBloodTemperature(patientDetails.getVisitDetails().getBloodTemperature());
+//		visit.setRespirationRate(patientDetails.getVisitDetails().getRespirationRate());
 //		
-		p.setVisitDetails(visit);
-		p.setProcedureDetails(patientDetails.getProcedureDetails());
-		p.setAllergies(patientDetails.getAllergies());
-		p.setDrugDetails(patientDetails.getDrugDetails());
+		List<PatientVisit> l1 = new ArrayList<>();
+		l1.add(visit);
+		//p.setVisitDetails(visit);
+//		p.setProcedureDetails(patientDetails.getProcedureDetails());
+//		p.setAllergies(patientDetails.getAllergies());
+//		p.setDrugDetails(patientDetails.getDrugDetails());
 		visitrepo.save(p);
 		
 		

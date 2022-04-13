@@ -1,10 +1,16 @@
 package com.citius.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,55 +22,61 @@ public class PatientVisit {
 	@Column(name = "visit_id")
 	private Integer visitId;
 	
-	private Integer height;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "vital_id")
+	private VitalSigns vitalSigns;
 	
-	private Integer weight;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Procedures> procedureDetails;
 	
-	private Integer bloodPressure;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Drug> drugDetails;
 	
-	private Integer bloodTemperature;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Diagnose> diagnosisDetails;
+
+	public Integer getVisitId() {
+		return visitId;
+	}
+
+	public void setVisitId(Integer visitId) {
+		this.visitId = visitId;
+	}
+
+	public VitalSigns getVitalSigns() {
+		return vitalSigns;
+	}
+
+	public void setVitalSigns(VitalSigns vitalSigns) {
+		this.vitalSigns = vitalSigns;
+	}
+
+	public List<Procedures> getProcedureDetails() {
+		return procedureDetails;
+	}
+
+	public void setProcedureDetails(List<Procedures> procedureDetails) {
+		this.procedureDetails = procedureDetails;
+	}
+
+	public List<Drug> getDrugDetails() {
+		return drugDetails;
+	}
+
+	public void setDrugDetails(List<Drug> drugDetails) {
+		this.drugDetails = drugDetails;
+	}
+
+	public List<Diagnose> getDiagnosisDetails() {
+		return diagnosisDetails;
+	}
+
+	public void setDiagnosisDetails(List<Diagnose> diagnosisDetails) {
+		this.diagnosisDetails = diagnosisDetails;
+	}
 	
-	private Integer respirationRate;
-
-	public Integer getHeight() {
-		return height;
-	}
-
-	public void setHeight(Integer height) {
-		this.height = height;
-	}
-
-	public Integer getWeight() {
-		return weight;
-	}
-
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
-
-	public Integer getBloodPressure() {
-		return bloodPressure;
-	}
-
-	public void setBloodPressure(Integer bloodPressure) {
-		this.bloodPressure = bloodPressure;
-	}
-
-	public Integer getBloodTemperature() {
-		return bloodTemperature;
-	}
-
-	public void setBloodTemperature(Integer bloodTemperature) {
-		this.bloodTemperature = bloodTemperature;
-	}
-
-	public Integer getRespirationRate() {
-		return respirationRate;
-	}
-
-	public void setRespirationRate(Integer respirationRate) {
-		this.respirationRate = respirationRate;
-	}
+	
 	
 	
 
