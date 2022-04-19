@@ -1,5 +1,7 @@
 package com.citius.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,13 +35,14 @@ public class User {
 	@NotNull(message = "Email Should Not be Null")@NotEmpty @NotBlank
 	private String userEmail;
 
-	private String userDOB;
+	private LocalDate userDOB;
 
 	@Size(min = 10,max = 10, message = "Contact No shoule be of 10 digit")
 	private String userContactNo;
 
 	@NotNull(message = "password should not be null")
 	private String password;
+	
 	
 	private Boolean isActive = true;
 
@@ -99,11 +102,11 @@ public class User {
 		this.userEmail = userEmail;
 	}
 
-	public String getUserDOB() {
+	public LocalDate getUserDOB() {
 		return userDOB;
 	}
 
-	public void setUserDOB(String userDOB) {
+	public void setUserDOB(LocalDate userDOB) {
 		this.userDOB = userDOB;
 	}
 

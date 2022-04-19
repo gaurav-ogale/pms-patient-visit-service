@@ -1,7 +1,6 @@
 package com.citius.model;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,8 +31,8 @@ public class PatientDetails extends User {
 	
 	private Boolean hasAllergy;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	private List<Allergy> allergies;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Allergy> allergies;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "visit_id")
@@ -46,9 +45,9 @@ public class PatientDetails extends User {
 
 	public void setAge() {
 		
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		LocalDate date;
-		date  = LocalDate.parse(this.getUserDOB(), format);
+//		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = this.getUserDOB();
+//		date  = LocalDate.parse(this.getUserDOB(), format);
 		LocalDate now =  LocalDate.now();
 		this.age= now.getYear() - date.getYear();
 	}
@@ -110,13 +109,13 @@ public class PatientDetails extends User {
 		this.homeAddress = homeAddress;
 	}
 
-//	public List<Allergy> getAllergies() {
-//		return allergies;
-//	}
-//
-//	public void setAllergies(List<Allergy> allergies) {
-//		this.allergies = allergies;
-//	}
+	public List<Allergy> getAllergies() {
+		return allergies;
+	}
+
+	public void setAllergies(List<Allergy> allergies) {
+		this.allergies = allergies;
+	}
 
 	
 
@@ -131,6 +130,15 @@ public class PatientDetails extends User {
 	public void setVisitDetails(List<PatientVisit> visitDetails) {
 		this.visitDetails = visitDetails;
 	}
+
+	@Override
+	public String toString() {
+		return "PatientDetails [age=" + age + ", gender=" + gender + ", race=" + race + ", ethnicity=" + ethnicity
+				+ ", languagesKnown=" + languagesKnown + ", homeAddress=" + homeAddress + ", emergencyContact="
+				+ emergencyContact + ", hasAllergy=" + hasAllergy + ", allergies=" + allergies + ", visitDetails="
+				+ visitDetails + "]";
+	}
+	
 	
 	
 

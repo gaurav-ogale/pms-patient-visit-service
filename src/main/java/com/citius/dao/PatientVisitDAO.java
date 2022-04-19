@@ -6,20 +6,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.citius.model.Allergy;
 import com.citius.model.EmergencyContact;
 import com.citius.model.PatientDetails;
 import com.citius.model.PatientVisit;
+import com.citius.model.User;
+import com.citius.model.getPatient;
 import com.citius.repository.EmergencyContactRepo;
+import com.citius.repository.UserRepo;
 import com.citius.repository.Visitrepo;
 
 @Component
 public class PatientVisitDAO {
 	
 	@Autowired
-	private Visitrepo visitrepo;
+	private  Visitrepo visitrepo;
 	
 	@Autowired
 	private EmergencyContactRepo emRepo;
+	
+	@Autowired
+	private UserRepo userRepo;
 
 	public void save(PatientDetails patientDetails) {
 		// TODO Auto-generated method stu
@@ -59,14 +66,14 @@ public class PatientVisitDAO {
 		
 		PatientVisit visit = new PatientVisit();
 	
-//		visit.setHeight(new Integer(16));
-//		visit.setWeight(60);
-//		visit.setBloodPressure(patientDetails.getVisitDetails().getBloodPressure());
-//		visit.setBloodTemperature(patientDetails.getVisitDetails().getBloodTemperature());
-//		visit.setRespirationRate(patientDetails.getVisitDetails().getRespirationRate());
-//		
 		List<PatientVisit> l1 = new ArrayList<>();
 		l1.add(visit);
+		
+		List<Allergy> l2 = patientDetails.getAllergies();
+		//Allergy all = new Allergy();
+		p.setAllergies(l2);
+	
+		
 		//p.setVisitDetails(visit);
 //		p.setProcedureDetails(patientDetails.getProcedureDetails());
 //		p.setAllergies(patientDetails.getAllergies());
@@ -91,6 +98,26 @@ public class PatientVisitDAO {
 		Integer id = p.getEmergencyContact().getEmergencyId();
 		emRepo.updateEmergencyContactDetails(e.getFirstName(),e.getLastName() , e.getEmail(), 
 				e.getContact(), e.getRelationship(), e.getAddress(), e.getAccessToPatientPortal(), id);
+		
+		
+	}
+
+	public  List<getPatient> getAllPatients() {
+		
+		
+		List<User> list = userRepo.findAll();
+		List<getPatient> l = new ArrayList<>();
+		
+		for( User u : list) {
+			
+			getPatient p = new getPatient();
+			p.setFname(u.getUserFirstName());
+			p.setlName(u.getUserLastName());
+			p.setNumber(u.getUserContactNo());
+			l.add(p);
+		}
+		System.out.println(l);
+		return l;
 		
 		
 	}

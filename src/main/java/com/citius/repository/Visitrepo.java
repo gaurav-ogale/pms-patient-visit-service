@@ -1,5 +1,8 @@
 package com.citius.repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +14,7 @@ import com.citius.model.User;
 
 
 @Repository
-public interface Visitrepo extends JpaRepository<User, Long>{
+public interface Visitrepo extends JpaRepository<PatientDetails, Long>{
 
 	@Query(value = "select * from users where emerg_id = ?1", nativeQuery = true)
 	public PatientDetails getByEmergId(Integer emergId);
@@ -27,9 +30,13 @@ public interface Visitrepo extends JpaRepository<User, Long>{
 			, nativeQuery = true)
 	public int updatePatientDetails(String title,String contact,String email ,
 
-			String firstname,String lastname,String dob,String gender
+			String firstname,String lastname,LocalDate dob,String gender
 			,String race,String languages ,String address
 			, String username);
+	
+	
+	@Query(value = "select * from users" , nativeQuery = true)
+	public List<User> getPatients();
 
 
 

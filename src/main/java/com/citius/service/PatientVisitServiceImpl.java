@@ -1,10 +1,13 @@
 package com.citius.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.citius.dao.PatientVisitDAO;
 import com.citius.model.PatientDetails;
+import com.citius.model.getPatient;
 
 @Service
 public class PatientVisitServiceImpl implements PatientVisitService {
@@ -34,5 +37,11 @@ public class PatientVisitServiceImpl implements PatientVisitService {
 
 	}
 
+	@Override
+	public List<getPatient> getAllPatients() {
+		// TODO Auto-generated method stub
+		return patVisitDAO.getAllPatients();
+		//return list;
 
+	}
 }
